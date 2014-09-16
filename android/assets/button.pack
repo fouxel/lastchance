@@ -1,0 +1,33 @@
+
+button.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+splash
+  rotate: false
+  xy: 1, 67
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
+badlogic
+  rotate: false
+  xy: 515, 67
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+buton2
+  rotate: false
+  xy: 1, 1
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+buton1
+  rotate: false
+  xy: 773, 259
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1

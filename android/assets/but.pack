@@ -1,0 +1,52 @@
+
+but.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+normalButton
+  rotate: false
+  xy: 1, 1
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: -1
+pushedButton
+  rotate: false
+  xy: 643, 1
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: -1
+logo
+  rotate: false
+  xy: 1285, 105
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
+
+but2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+OriginalSizes/normalButton
+  rotate: false
+  xy: 1, 723
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: -1
+OriginalSizes/pushedButton
+  rotate: false
+  xy: 1, 1
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: -1
+OriginalSizes/logo
+  rotate: false
+  xy: 1283, 1187
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
