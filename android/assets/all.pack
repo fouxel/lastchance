@@ -1,0 +1,47 @@
+
+all.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+gameover
+  rotate: false
+  xy: 1, 787
+  size: 1109, 142
+  orig: 1109, 142
+  offset: 0, 0
+  index: -1
+last_chance
+  rotate: false
+  xy: 1, 612
+  size: 894, 173
+  orig: 894, 173
+  offset: 0, 0
+  index: -1
+zegarek3
+  rotate: false
+  xy: 1, 95
+  size: 515, 515
+  orig: 515, 515
+  offset: 0, 0
+  index: -1
+pushedButton
+  rotate: false
+  xy: 1112, 819
+  size: 601, 110
+  orig: 601, 110
+  offset: 0, 0
+  index: -1
+normalButton
+  rotate: false
+  xy: 1112, 731
+  size: 588, 86
+  orig: 588, 86
+  offset: 0, 0
+  index: -1
+logo
+  rotate: false
+  xy: 1, 1
+  size: 316, 92
+  orig: 316, 92
+  offset: 0, 0
+  index: -1
