@@ -377,7 +377,7 @@ public class GameScreen extends AbstractScreen{
 		coinsList.get(59).createCoin(970, 55, 6,59);
 		coinsList.get(60).createCoin(975, 55, 6,60);
 
-
+//Tutaj jakas kupa
         FileHandle fontFile = Gdx.files.internal("whitrabt.ttf");
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(fontFile);
 
