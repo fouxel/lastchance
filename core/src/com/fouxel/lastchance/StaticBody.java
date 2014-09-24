@@ -55,7 +55,7 @@ public class StaticBody {
 		FixtureDef fixtureDef = new FixtureDef();
     	fixtureDef.shape = chain;
     	fixtureDef.density = 20;
-    	fixtureDef.friction = 0.0f;
+    	fixtureDef.friction = 0.1f;
     	fixtureDef.restitution = 0.0f;
 	        
 	    body.createFixture(fixtureDef).setUserData("Chain");

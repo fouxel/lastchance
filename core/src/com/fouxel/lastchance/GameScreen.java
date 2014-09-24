@@ -64,6 +64,7 @@ public class GameScreen extends AbstractScreen{
 	
 	
 	private double				lat, lon;
+	private boolean 				plus = true;
 	
 	
 	public String getText() {
@@ -83,14 +84,15 @@ public class GameScreen extends AbstractScreen{
 		 public void touchUp(InputEvent event, float x, float y, int pointer, int button){
 			 System.out.println("Delta: " + delta);
 			 delta = 100;
+			// plus = true;
 			 if(listener.canJump()){
 				 secondJump = true;
 				 body.setTransform(body.getPosition().x, body.getPosition().y+1, body.getAngle());
-				 body.setLinearVelocity(25, 25);
+				 body.setLinearVelocity(plus == true ? -25 : 25, 25);
 			 }
 			 else{
 				 if(secondJump){
-					 body.setLinearVelocity(30, 25);
+					 body.setLinearVelocity(plus == true ? -30 : 30, 25);
 					 secondJump = false;
 				 }
 			 }
@@ -132,8 +134,10 @@ public class GameScreen extends AbstractScreen{
  	   int year = Integer.parseInt(yearsFormat.format(date));
 	   int month = Integer.parseInt(monthsFormat.format(date));
 	   int day = Integer.parseInt(daysFormat.format(date));
+	   
+	    plus = minute%2 == 0 ? true : false;
 		if(body != null){
-			body.setTransform(startingPoints.get(0), 0);
+			body.setTransform(startingPoints.get(second%3), 0);
 			body.setLinearVelocity(20, 0);
 		}
 		secondJump = false;
@@ -199,6 +203,11 @@ public class GameScreen extends AbstractScreen{
 		startingPoints.get(2).x = 750;
 		startingPoints.get(2).y = 60;
 		
+		startingPoints.add(new Vector2());
+		startingPoints.get(3).x = -390;
+		startingPoints.get(3).y = 70;
+		
+		
 		chainsList.add(new StaticBody());
 		Vector2[] vertices = new Vector2[4];
 		vertices[0] = new Vector2(-40,0);
@@ -236,6 +245,27 @@ public class GameScreen extends AbstractScreen{
 		vertices4[0] = new Vector2(550, 20);
 		vertices4[1] = new Vector2(650, 20);
 		chainsList.get(3).createChain(0, 0, vertices4);
+		
+
+		chainsList.add(new StaticBody());
+		Vector2[] vertices5 = new Vector2[15];
+		vertices5[0] = new Vector2(-40, 0);
+		vertices5[1] = new Vector2(-100, -5);
+		vertices5[2] = new Vector2(-150, 15);
+		vertices5[3] = new Vector2(-150, 20);
+		vertices5[4] = new Vector2(-160, 20);
+		vertices5[5] = new Vector2(-160, 25);
+		vertices5[6] = new Vector2(-170, 25);
+		vertices5[7] = new Vector2(-170, 30);
+		vertices5[8] = new Vector2(-190, 30);
+		vertices5[9] = new Vector2(-190, 35);
+		vertices5[10] = new Vector2(-200, 35);
+		vertices5[11] = new Vector2(-200, 40);
+		vertices5[12] = new Vector2(-210, 40);
+		vertices5[13] = new Vector2(-210, 45);
+		vertices5[14] = new Vector2(-240, 45);
+		chainsList.get(4).createChain(0, 0, vertices5);
+		
 		
 		
 		
@@ -294,6 +324,15 @@ public class GameScreen extends AbstractScreen{
 		dynamicRectangles.add(new DynamicBody());
 		dynamicRectangles.get(10).createDynamicRectangle(945, 70, 2,4,0.1f,0f,1.0f);
 		
+		
+		dynamicRectangles.add(new DynamicBody());
+		dynamicRectangles.get(11).createDynamicRectangle(-390, 46, 2,4,0.1f,0f,1.0f);
+		dynamicRectangles.add(new DynamicBody());
+		dynamicRectangles.get(12).createDynamicRectangle(-400, 46, 2,4,0.1f,0f,1.0f);
+		
+		dynamicRectangles.add(new DynamicBody());
+		dynamicRectangles.get(13).createDynamicRectangle(-393, 51, 12,1,0.1f,0f,1.0f);
+		
 		platforms.add(new StaticBody());
 		platforms.get(10).createPlatform(960, 50.2f, 0.2f, 0.2f);
 		platforms.add(new StaticBody());
@@ -303,6 +342,16 @@ public class GameScreen extends AbstractScreen{
 		platforms.add(new StaticBody());
 		platforms.get(13).createPlatform(1110, 64.0f, 10, 3);
 		
+		
+		platforms.add(new StaticBody());
+		platforms.get(14).createPlatform(-260, 40.5f, 10, 3);
+		platforms.add(new StaticBody());
+		platforms.get(15).createPlatform(-300, 45.5f, 10, 3);
+		platforms.add(new StaticBody());
+		platforms.get(16).createPlatform(-340, 49.5f, 10, 3);
+	
+		platforms.add(new StaticBody());
+		platforms.get(17).createPlatform(-420, 40.5f, 50, 3);
 		
 		for(int i = 0; i < 100; ++i)
 			coinsList.add(new StaticBody());
@@ -376,6 +425,52 @@ public class GameScreen extends AbstractScreen{
 		coinsList.get(58).createCoin(965, 55, 6,58);
 		coinsList.get(59).createCoin(970, 55, 6,59);
 		coinsList.get(60).createCoin(975, 55, 6,60);
+		
+		for(int i = 61; i < 70; ++i){
+			coinsList.get(i).createCoin(1000+((i-61)*10), 56+(i-61)*3, 6,i);
+		}
+		
+		coinsList.get(70).createCoin(-40, 3, 6,70);
+		coinsList.get(71).createCoin(-50, 4, 6,71);
+		coinsList.get(72).createCoin(-60, 5, 6,72);
+		coinsList.get(73).createCoin(-70, 7, 6,73);
+		coinsList.get(74).createCoin(-80, 3, 6,74);
+		coinsList.get(75).createCoin(-90, 4, 6,75);
+		coinsList.get(76).createCoin(-100, 5, 6,76);
+		coinsList.get(77).createCoin(-110, 7, 6,77);
+		
+		coinsList.get(78).createCoin(-155, 25, 6,78);
+		coinsList.get(79).createCoin(-165, 30, 6,79);
+		coinsList.get(80).createCoin(-175, 35, 6,80);
+		coinsList.get(81).createCoin(-185, 35, 6,81);
+		
+		coinsList.get(82).createCoin(-195, 40, 6,82);
+		coinsList.get(83).createCoin(-205, 45, 6,83);
+		coinsList.get(84).createCoin(-215, 50, 6,84);
+		coinsList.get(85).createCoin(-225, 50, 6,85);
+		coinsList.get(86).createCoin(-235, 50, 6,86);
+		
+
+		coinsList.get(87).createCoin(-255, 50, 6,87);
+		coinsList.get(88).createCoin(-265, 50, 6,88);
+		coinsList.get(89).createCoin(-335, 55, 6,89);
+		coinsList.get(90).createCoin(-345, 55, 6,90);
+		coinsList.get(91).createCoin(-295, 52, 6,91);
+		coinsList.get(92).createCoin(-305, 52, 6,92);
+		
+	/*	vertices5[3] = new Vector2(-150, 20);
+		vertices5[4] = new Vector2(-160, 20);
+		vertices5[5] = new Vector2(-160, 25);
+		vertices5[6] = new Vector2(-170, 25);
+		vertices5[7] = new Vector2(-170, 30);
+		vertices5[8] = new Vector2(-190, 30);
+		vertices5[9] = new Vector2(-190, 35);
+		vertices5[10] = new Vector2(-200, 35);
+		vertices5[11] = new Vector2(-200, 40);
+		vertices5[12] = new Vector2(-210, 40);
+		vertices5[13] = new Vector2(-210, 45);
+		vertices5[14] = new Vector2(-250, 45);*/
+		
 
 //Tutaj jakas kupa
         FileHandle fontFile = Gdx.files.internal("whitrabt.ttf");
@@ -400,8 +495,9 @@ public class GameScreen extends AbstractScreen{
 		HM.l("Y: " + body.getPosition().y);
 		
 		if(body.getPosition().y < -50){
-			endGame = 1;
-			
+			setEndGame(1);
+			if(coins > maxScore)
+				maxScore = coins;
 		}
 
 		if(listener.getBodyToDestroy() != null){
