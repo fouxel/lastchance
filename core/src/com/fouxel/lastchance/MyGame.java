@@ -6,6 +6,7 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+
 import com.fouxel.helper.*;
 
 
@@ -35,7 +36,6 @@ public class MyGame extends Game {
 	
 	@Override
 	public void create () {
-		
 		
 		batch = new SpriteBatch();
 		prefs = Gdx.app.getPreferences("GameState");
@@ -82,6 +82,7 @@ public class MyGame extends Game {
 							sMenu.setMaxScore(maxScore);
 							sEnd.setScore(sGame.getCoins());
 							sEnd.setHighScore(maxScore);
+
 							actScreen = SCREEN_ENUM.END_SCREEN;
 							setScreen(sEnd);
 						}

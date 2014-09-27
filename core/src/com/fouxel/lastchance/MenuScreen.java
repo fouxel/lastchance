@@ -43,6 +43,7 @@ public class MenuScreen extends AbstractScreen{
 			batch = batch1;
 			this.skin = skin;
 			this.setMaxScore(maxScore);
+
 			
 			create();
 		}
@@ -62,12 +63,14 @@ public class MenuScreen extends AbstractScreen{
 			Gdx.input.setInputProcessor(stage);
 
 		 	font = new BitmapFont();
+
 	        textButtonStyle = new TextButtonStyle();
 	        textButtonStyle.font = font;
 	        textButtonStyle.up = skin.getDrawable("normalButton");
 	        textButtonStyle.down = skin.getDrawable("pushedButton");
 	        textButtonStyle.checked = skin.getDrawable("pushedButton");
 	        button = new TextButton("", textButtonStyle);
+
 	        button.setPosition(-button.getWidth()/2,-button.getHeight()/2);
 	        stage.addActor(button);
 	        
@@ -85,7 +88,7 @@ public class MenuScreen extends AbstractScreen{
 			Gdx.input.setInputProcessor(stage);
 			clicked = false;
 			  HM.l("show");
-			  
+			 
 	        button.addListener(new ChangeListener() {
 				@Override
 				public void changed(ChangeEvent event, Actor actor) {
@@ -96,6 +99,7 @@ public class MenuScreen extends AbstractScreen{
 		}
 	public void render(float delta){
 		super.render(delta);
+
 		stage.getRoot().setVisible(true);
 		stage.act(delta);
 		//camera.update();
@@ -113,6 +117,7 @@ public class MenuScreen extends AbstractScreen{
 	}
 	public void resize(int width, int height){
 	//	stage.getViewport().update(width, height,true);
+
 		
 	}
 	

@@ -78,6 +78,7 @@ public class EndScreen extends AbstractScreen {
 		font.setColor(1.0f, 0.64f, 0.0f, 1.0f);
 		font.draw(batch, "score: "+ score, -140, -220); 
 		font.draw(batch, "highscore: "+ highScore, -200, 250); 
+
 		batch.end();
 		index++;
 		
@@ -115,5 +116,6 @@ public class EndScreen extends AbstractScreen {
 	public void setHighScore(int highScore) {
 		this.highScore = highScore;
 	}
+
 
 }

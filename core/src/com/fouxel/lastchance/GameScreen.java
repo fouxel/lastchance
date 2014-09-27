@@ -65,7 +65,7 @@ public class GameScreen extends AbstractScreen{
 	
 	private double				lat, lon;
 	private boolean 				plus = true;
-	
+
 	
 	public String getText() {
 		return text;
@@ -84,6 +84,7 @@ public class GameScreen extends AbstractScreen{
 		 public void touchUp(InputEvent event, float x, float y, int pointer, int button){
 			 System.out.println("Delta: " + delta);
 			 delta = 100;
+
 			// plus = true;
 			 if(listener.canJump()){
 				 secondJump = true;
@@ -103,6 +104,7 @@ public class GameScreen extends AbstractScreen{
 		super();
 		batch = batch1;
 		this.maxScore = maxScore;
+
 
 		create();
 	}
@@ -226,7 +228,9 @@ public class GameScreen extends AbstractScreen{
 		
 		//Naparzanie kulkami
 		chainsList.add(new StaticBody());
+
 		Vector2[] vertices3 = new Vector2[7];
+
 		vertices3[0] = new Vector2(550, 0);
 		vertices3[1] = new Vector2(650, 0);
 		vertices3[2] = new Vector2(750, 50);
@@ -234,6 +238,7 @@ public class GameScreen extends AbstractScreen{
 		vertices3[4] = new Vector2(860, 90);
 		vertices3[5] = new Vector2(890, 50);
 		vertices3[6] = new Vector2(1000, 50);
+
 		chainsList.get(2).createChain(0, 0, vertices3);
 		
 		for(int i = 0; i < 10; ++ i){
@@ -246,6 +251,7 @@ public class GameScreen extends AbstractScreen{
 		vertices4[1] = new Vector2(650, 20);
 		chainsList.get(3).createChain(0, 0, vertices4);
 		
+
 
 		chainsList.add(new StaticBody());
 		Vector2[] vertices5 = new Vector2[15];
@@ -287,6 +293,7 @@ public class GameScreen extends AbstractScreen{
 		platforms.get(5).createPlatform(465, -4.5f, 10, 3);
 		platforms.add(new StaticBody());
 		platforms.get(6).createPlatform(510, -0.5f, 10, 3);
+
 		platforms.add(new StaticBody());
 		platforms.get(7).createPlatform(380, -8f, 15, 2);
 		
@@ -473,11 +480,13 @@ public class GameScreen extends AbstractScreen{
 		
 
 //Tutaj jakas kupa
+
         FileHandle fontFile = Gdx.files.internal("whitrabt.ttf");
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(fontFile);
 
         font = generator.generateFont(40);
         generator.dispose();
+
         setupPlayer();
         
         
@@ -513,6 +522,7 @@ public class GameScreen extends AbstractScreen{
 		camera.update();
 		renderer.render(world, camera.combined);
 		
+
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		
@@ -522,9 +532,11 @@ public class GameScreen extends AbstractScreen{
 		cameraForGUI.update();   
 	    batch.setProjectionMatrix(cameraForGUI.combined);
 		batch.begin();
+		
 		font.setColor(1.0f, 0.64f, 0.0f, 1.0f);
 		font.draw(batch, "" + (60-frameIndex) + " seconds left", -600, 400); 
 		font.draw(batch, "Points: " + (coins), 400, 400); 
+
 		
 		batch.end();
 		
@@ -558,6 +570,7 @@ public class GameScreen extends AbstractScreen{
 		fixtureDef.restitution = 0.0f;
 		fixture = body.createFixture(fixtureDef);
 		fixture.setUserData("Player");
+
 		circle.dispose();
 	}
 	
@@ -590,6 +603,7 @@ public class GameScreen extends AbstractScreen{
 					setEndGame(2);
 					if(coins > maxScore)
 						maxScore = coins;
+
 				}
 			}
 			

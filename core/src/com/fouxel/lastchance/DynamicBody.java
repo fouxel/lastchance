@@ -57,6 +57,7 @@ public class DynamicBody {
 	}
 	
 	public void createDynamicRectangle(float x, float y, float w, float h, float density, float restitution, float friction){
+
 		oldX = x;
 		oldY = y;
 		BodyDef bodyDef = new BodyDef();
@@ -75,6 +76,7 @@ public class DynamicBody {
 		fixtureDef.density = density;
 		fixtureDef.friction = friction;
 		fixtureDef.restitution = restitution;
+
 		Fixture fixture = body.createFixture(fixtureDef);
 		fixture.setUserData("DynamicRectangle");
 		//body.setActive(false);
