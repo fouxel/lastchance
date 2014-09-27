@@ -84,7 +84,7 @@ public class GameScreen extends AbstractScreen{
 		 public void touchUp(InputEvent event, float x, float y, int pointer, int button){
 			 System.out.println("Delta: " + delta);
 			 delta = 100;
-			// plus = true;
+			 plus = true;
 			 if(listener.canJump()){
 				 secondJump = true;
 				 body.setTransform(body.getPosition().x, body.getPosition().y+1, body.getAngle());
@@ -137,7 +137,7 @@ public class GameScreen extends AbstractScreen{
 	   
 	    plus = minute%2 == 0 ? true : false;
 		if(body != null){
-			body.setTransform(startingPoints.get(second%3), 0);
+			body.setTransform(startingPoints.get(0), 0);
 			body.setLinearVelocity(20, 0);
 		}
 		secondJump = false;
@@ -204,7 +204,7 @@ public class GameScreen extends AbstractScreen{
 		startingPoints.get(2).y = 60;
 		
 		startingPoints.add(new Vector2());
-		startingPoints.get(3).x = -390;
+		startingPoints.get(3).x = -350;
 		startingPoints.get(3).y = 70;
 		
 		
@@ -333,6 +333,9 @@ public class GameScreen extends AbstractScreen{
 		dynamicRectangles.add(new DynamicBody());
 		dynamicRectangles.get(13).createDynamicRectangle(-393, 51, 12,1,0.1f,0f,1.0f);
 		
+		dynamicRectangles.add(new DynamicBody());
+		dynamicRectangles.get(14).createDynamicRectangle(-533, 80, 1,30,0.1f,0f,1.0f);
+		
 		platforms.add(new StaticBody());
 		platforms.get(10).createPlatform(960, 50.2f, 0.2f, 0.2f);
 		platforms.add(new StaticBody());
@@ -352,6 +355,15 @@ public class GameScreen extends AbstractScreen{
 	
 		platforms.add(new StaticBody());
 		platforms.get(17).createPlatform(-420, 40.5f, 50, 3);
+		
+		platforms.add(new StaticBody());
+		platforms.get(18).createPlatform(-520, 45.5f, 25, 3);
+		
+		platforms.add(new StaticBody());
+		platforms.get(19).createPlatform(-535, 50.5f, 1, 1);
+		
+		platforms.add(new StaticBody());
+		platforms.get(20).createPlatform(-595, 50.5f, 10, 1);
 		
 		for(int i = 0; i < 100; ++i)
 			coinsList.add(new StaticBody());
@@ -522,9 +534,9 @@ public class GameScreen extends AbstractScreen{
 		cameraForGUI.update();   
 	    batch.setProjectionMatrix(cameraForGUI.combined);
 		batch.begin();
-		font.setColor(1.0f, 0.64f, 0.0f, 1.0f);
-		font.draw(batch, "" + (60-frameIndex) + " seconds left", -600, 400); 
-		font.draw(batch, "Points: " + (coins), 400, 400); 
+		font.setColor(0.08f, 0.34f, 0.031f, 1.0f);
+		font.draw(batch, "[/time]$   " + (60-frameIndex), -600, 400); 
+		font.draw(batch, "[/points]$ " + (coins), -600, 430); 
 		
 		batch.end();
 		
