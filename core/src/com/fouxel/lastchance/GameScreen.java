@@ -142,11 +142,9 @@ public class GameScreen extends AbstractScreen{
 	    	max = 12;
 		if(body != null){
 			int index = second%max;
-			HM.l("index: " + index);
-			HM.l("max: " + max);
 			
-			//index = 0;
-			//plus = false;
+			index = 0;
+			plus = true;
 			if(plus == true){ 
 				switch(index){
 				case 0:
