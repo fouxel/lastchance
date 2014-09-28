@@ -207,6 +207,11 @@ public class GameScreen extends AbstractScreen{
 		startingPoints.get(3).x = -350;
 		startingPoints.get(3).y = 70;
 		
+
+		startingPoints.add(new Vector2());
+		startingPoints.get(4).x = 1410;
+		startingPoints.get(4).y = 13;
+		
 		
 		chainsList.add(new StaticBody());
 		Vector2[] vertices = new Vector2[4];
@@ -240,6 +245,9 @@ public class GameScreen extends AbstractScreen{
 		dynamicBalls.add(new DynamicBody());
 		dynamicBalls.get(i).createDynamicBall(570 + i*5, 10, 2);
 		}
+		
+		dynamicBalls.add(new DynamicBody());
+		dynamicBalls.get(10).createDynamicBall(1419, 23, 2);
 		chainsList.add(new StaticBody());
 		Vector2[] vertices4 = new Vector2[2];
 		vertices4[0] = new Vector2(550, 20);
@@ -265,6 +273,48 @@ public class GameScreen extends AbstractScreen{
 		vertices5[13] = new Vector2(-210, 45);
 		vertices5[14] = new Vector2(-240, 45);
 		chainsList.get(4).createChain(0, 0, vertices5);
+		
+	
+		chainsList.add(new StaticBody());
+		Vector2[] vertices6 = new Vector2[8];
+		vertices6[0] = new Vector2(1140, 64);
+		vertices6[1] = new Vector2(1170, 10);
+		vertices6[2] = new Vector2(1200, 64);
+		vertices6[3] = new Vector2(1230, 10);
+		vertices6[4] = new Vector2(1260, 64);
+		vertices6[5] = new Vector2(1290, 10);
+		vertices6[6] = new Vector2(1320, 64);
+		vertices6[7] = new Vector2(1350, 10);
+		chainsList.get(5).createChain(0, 0, vertices6);
+		
+		
+
+		chainsList.add(new StaticBody());
+		Vector2[] vertices7 = new Vector2[15];
+		vertices7[0] = new Vector2(1445, 12);
+		vertices7[1] = new Vector2(1500, 12);
+		vertices7[2] = new Vector2(1500, 25);
+		vertices7[3] = new Vector2(1510, 25);
+		vertices7[4] = new Vector2(1510, 12);
+		vertices7[5] = new Vector2(1550, 12);
+		vertices7[6] = new Vector2(1550, 25);
+		vertices7[7] = new Vector2(1560, 25);
+		vertices7[8] = new Vector2(1560, 12);
+		vertices7[9] = new Vector2(1600, 12);
+		vertices7[10] = new Vector2(1600, 25);
+		vertices7[11] = new Vector2(1610, 25);
+		vertices7[12] = new Vector2(1610, 12);
+		vertices7[13] = new Vector2(1650, 12);
+		vertices7[14] = new Vector2(1650, 25);
+		chainsList.get(6).createChain(0, 0, vertices7);
+		
+		chainsList.add(new StaticBody());
+		Vector2[] vertices8 = new Vector2[15];
+		
+		for(int i = 0; i < 15; ++ i){
+			vertices8[i] = new Vector2(vertices7[i].x - 2275,vertices7[i].y+30);
+		}
+		chainsList.get(7).createChain(0, 0, vertices8);
 		
 		
 		
@@ -365,7 +415,17 @@ public class GameScreen extends AbstractScreen{
 		platforms.add(new StaticBody());
 		platforms.get(20).createPlatform(-595, 50.5f, 10, 1);
 		
-		for(int i = 0; i < 100; ++i)
+		platforms.add(new StaticBody());
+		platforms.get(21).createPlatform(1370, 10.5f, 5, 1);
+		
+		platforms.add(new StaticBody());
+		platforms.get(22).createPlatform(1420, 10.5f, 20, 1);
+		
+		platforms.add(new StaticBody());
+		platforms.get(23).createPlatform(1420, 16.0f, 2, 4.5f);
+		
+		
+		for(int i = 0; i < 150; ++i)
 			coinsList.add(new StaticBody());
 		coinsList.get(0).createCoin(50, 5, 6,0);
 		coinsList.get(1).createCoin(130, 8,6,1);
@@ -470,6 +530,33 @@ public class GameScreen extends AbstractScreen{
 		coinsList.get(91).createCoin(-295, 52, 6,91);
 		coinsList.get(92).createCoin(-305, 52, 6,92);
 		
+		coinsList.get(93).createCoin(-415, 50, 6,93);
+		coinsList.get(94).createCoin(-425, 60, 6,94);
+		coinsList.get(95).createCoin(-435, 50, 6,95);
+		coinsList.get(96).createCoin(-445, 60, 6,96);
+		coinsList.get(97).createCoin(-450, 50, 6,97);
+		coinsList.get(98).createCoin(-460, 50, 6,98);
+		coinsList.get(99).createCoin(-470, 60, 6,99);
+		coinsList.get(100).createCoin(-480, 50, 6,100);
+		for(int i = 0; i < 3; ++ i){
+			for(int j = 0; j < 8; ++j){
+				int index = 100 +(i*8) + j;
+				coinsList.get(index).createCoin(1168+(i*60)+j*5, 15+j*10, 6,index);
+				HM.l("index: " + index);
+			}
+		}
+		coinsList.get(124).createCoin(1500, 30, 6,124);
+		coinsList.get(125).createCoin(1510, 30, 6,125);
+		coinsList.get(126).createCoin(1500+50, 30, 6,126);
+		coinsList.get(127).createCoin(1510+50, 30, 6,127);
+		coinsList.get(128).createCoin(1500+100, 30, 6,128);
+		coinsList.get(129).createCoin(1510+100, 30, 6,129);
+		coinsList.get(130).createCoin(1513, 20, 6,130);
+		coinsList.get(131).createCoin(1547, 20, 6,131);
+		coinsList.get(132).createCoin(1513+50, 20, 6,132);
+		coinsList.get(133).createCoin(1547+50, 20, 6,133);
+		coinsList.get(134).createCoin(1513+100, 20, 6,134);
+		coinsList.get(135).createCoin(1547+100, 20, 6,135);
 	/*	vertices5[3] = new Vector2(-150, 20);
 		vertices5[4] = new Vector2(-160, 20);
 		vertices5[5] = new Vector2(-160, 25);
