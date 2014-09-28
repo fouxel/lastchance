@@ -69,6 +69,7 @@ public class MenuScreen extends AbstractScreen{
 	        textButtonStyle.checked = skin.getDrawable("pushedButton");
 	        button = new TextButton("", textButtonStyle);
 	        button.setPosition(-button.getWidth()/2,-button.getHeight()/2);
+	        button.setScale(2);
 	        stage.addActor(button);
 	        
 	        FileHandle fontFile = Gdx.files.internal("whitrabt.ttf");

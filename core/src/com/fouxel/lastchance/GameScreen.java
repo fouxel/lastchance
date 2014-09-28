@@ -126,15 +126,11 @@ public class GameScreen extends AbstractScreen{
 	   
 	    plus = minute%2 == 0 ? true : false;
 	    FORCE = 25 + second%5;
-	    //FORCE= 35;
 	    int max = 5;
 	    if(plus == false)
 	    	max = 12;
 		if(body != null){
 			int index = second%max;
-			
-			index = 0;
-			plus = true;
 			if(plus == true){ 
 				switch(index){
 				case 0:
