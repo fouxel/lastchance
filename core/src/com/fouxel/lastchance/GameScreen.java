@@ -65,19 +65,9 @@ public class GameScreen extends AbstractScreen{
 	private ArrayList<Vector2>					startingPoints;
 	
 	
-	private double				lat, lon;
 	private boolean 				plus = true;
 	
-	
-	public String getText() {
-		return text;
-	}
 
-	public void setText(String text) {
-		this.text = text;
-	}
-
-	private String				text; 
 	private InputListener myListener= new InputListener() {
 		 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
 			 return true; 
@@ -199,7 +189,6 @@ public class GameScreen extends AbstractScreen{
 		secondJump = false;
 		listener.setCanJump(false);
 		
-		//Sprawdzanie, które body s¹ zdeletowane po tym jak u¿ytkownik je zebra³
 		for(int i = 0; i < coinsList.size(); ++i){
 			if(coinsList.get(i).isAlive() == false){
 				coinsList.get(i).createCoinInner();
@@ -214,8 +203,6 @@ public class GameScreen extends AbstractScreen{
 		
 	}
 	public void create(){
-		text = "Lat:   , lon:   ";
-		setLat(setLon(0.0d));
 		
 		setupTimer();
 		
@@ -871,23 +858,6 @@ public class GameScreen extends AbstractScreen{
 
 	public void setEndGame(int endGame) {
 		this.endGame = endGame;
-	}
-
-	public double getLat() {
-		return lat;
-	}
-
-	public void setLat(double lat) {
-		this.lat = lat;
-	}
-
-	public double getLon() {
-		return lon;
-	}
-
-	public double setLon(double lon) {
-		this.lon = lon;
-		return lon;
 	}
 
 	public int getMaxScore() {

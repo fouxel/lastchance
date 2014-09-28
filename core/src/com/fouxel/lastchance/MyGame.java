@@ -31,7 +31,6 @@ public class MyGame extends Game {
 	
 	private Preferences prefs;
 	
-	private double latitude, longitude, delta;
 	
 	@Override
 	public void create () {
@@ -53,7 +52,7 @@ public class MyGame extends Game {
 		setScreen(sStart);
 		actScreen = SCREEN_ENUM.START_SCREEN;
 		
-		latitude = longitude = delta = 0.0;
+		
 		
 	}
 
@@ -105,39 +104,5 @@ public class MyGame extends Game {
 		setScreen(sMenu);
 	}
 	
-	public void UpdateLocation(double lat, double lon){
-		if((lat == 0 && lon == 0))
-			return;
-		if(latitude == 0 && longitude == 0){
-			latitude = lat;
-			longitude = lon;
-			return;
-		}
-		
-		
-		if(sGame != null){
-			latitude = lat;
-			longitude = lon;
-			
-			sGame.setLat(latitude);
-			sGame.setLon(longitude);
-			
-		}
-	/*	switch(actScreen){	
-			case GAME_SCREEN:
-				delta = Math.sqrt(Math.pow((latitude - lat),2) + Math.pow((longitude - lon),2));
-				sGame.setText("lat: " + String.valueOf(lat) + " lon: " + String.valueOf(lon) + " delta: " + String.valueOf(delta));
-				sGame.setDelta(delta);
-				latitude = lat;
-				longitude = lon;
-				
-				break;
-			
-			default:
-				break;
-
-			}*/
-		return;
-	}
 	
 }
