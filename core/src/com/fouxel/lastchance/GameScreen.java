@@ -50,7 +50,9 @@ public class GameScreen extends AbstractScreen{
 	private int					coins = 0;
 	private int 				maxScore = 0;
 	private boolean				secondJump = false;
+	private int					TTL = 60;
 	
+	private int					FORCE = 25;
 	
 	Fixture fixture;
 	private ArrayList<KinematicBody>			movingPlatforms;
@@ -82,17 +84,14 @@ public class GameScreen extends AbstractScreen{
 		 }
 		 
 		 public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-			 System.out.println("Delta: " + delta);
-			 delta = 100;
-			 plus = true;
 			 if(listener.canJump()){
 				 secondJump = true;
 				 body.setTransform(body.getPosition().x, body.getPosition().y+1, body.getAngle());
-				 body.setLinearVelocity(plus == true ? -25 : 25, 25);
+				 body.setLinearVelocity(plus == true ? FORCE : -FORCE, FORCE);
 			 }
 			 else{
 				 if(secondJump){
-					 body.setLinearVelocity(plus == true ? -30 : 30, 25);
+					 body.setLinearVelocity(plus == true ? FORCE : -FORCE, FORCE);
 					 secondJump = false;
 				 }
 			 }
@@ -136,8 +135,67 @@ public class GameScreen extends AbstractScreen{
 	   int day = Integer.parseInt(daysFormat.format(date));
 	   
 	    plus = minute%2 == 0 ? true : false;
+	    FORCE = 25 + second%5;
+	    //FORCE= 35;
+	    int max = 5;
+	    if(plus == false)
+	    	max = 12;
 		if(body != null){
-			body.setTransform(startingPoints.get(0), 0);
+			int index = second%max;
+			HM.l("index: " + index);
+			HM.l("max: " + max);
+			
+			//index = 0;
+			//plus = false;
+			if(plus == true){ 
+				switch(index){
+				case 0:
+					TTL = 55 + hour%2 + second %4 ;
+					break;
+				case 1:
+					TTL = 52 + year%2 + second %4 ;
+					break;
+				case 2:
+					TTL = 48 + month%2 + second %4 ;
+					break;
+				case 3: 
+					TTL = 46 + month%2 + day%4 ;
+					break;
+				case 4: 
+					TTL = 40 + month%3 + day%4 ;
+					break;
+				default:
+					TTL = 35;
+					break;
+				
+				}
+			
+			}
+			else{
+				switch(index){
+				case 0:
+					TTL = 32 + hour%2 + second %3 ;
+					break;
+				case 1:
+					TTL = 38 + year%2 + second %4 ;
+					break;
+				case 2:
+					TTL = 41 + month%2 + second %3 ;
+					break;
+				case 3:
+					TTL = 50 + month%2 + second %4 ;
+					break;
+				default:
+					TTL = 56 + hour%2 + second%4;
+				
+				}
+				
+				
+			}
+			
+			TTL -= (second%5)*2;
+				
+			body.setTransform(startingPoints.get(index), 0);
 			body.setLinearVelocity(20, 0);
 		}
 		secondJump = false;
@@ -145,7 +203,6 @@ public class GameScreen extends AbstractScreen{
 		
 		//Sprawdzanie, które body s¹ zdeletowane po tym jak u¿ytkownik je zebra³
 		for(int i = 0; i < coinsList.size(); ++i){
-			HM.l("i: " + i);
 			if(coinsList.get(i).isAlive() == false){
 				coinsList.get(i).createCoinInner();
 				}
@@ -200,17 +257,45 @@ public class GameScreen extends AbstractScreen{
 		startingPoints.get(1).y = 45;
 		
 		startingPoints.add(new Vector2());
-		startingPoints.get(2).x = 750;
-		startingPoints.get(2).y = 60;
+		startingPoints.get(2).x = 280;
+		startingPoints.get(2).y = 5;
 		
 		startingPoints.add(new Vector2());
-		startingPoints.get(3).x = -350;
-		startingPoints.get(3).y = 70;
+		startingPoints.get(3).x = 550;
+		startingPoints.get(3).y = 5;
 		
 
 		startingPoints.add(new Vector2());
-		startingPoints.get(4).x = 1410;
-		startingPoints.get(4).y = 13;
+		startingPoints.get(4).x = 760;
+		startingPoints.get(4).y = 58;
+		
+		startingPoints.add(new Vector2());
+		startingPoints.get(5).x = 990;
+		startingPoints.get(5).y = 55;
+		
+		startingPoints.add(new Vector2());
+		startingPoints.get(6).x = 1160;
+		startingPoints.get(6).y = 30;
+		
+		startingPoints.add(new Vector2());
+		startingPoints.get(7).x = 1190;
+		startingPoints.get(7).y = 58;
+		
+		startingPoints.add(new Vector2());
+		startingPoints.get(8).x = 1220;
+		startingPoints.get(8).y = 58;
+		
+		startingPoints.add(new Vector2());
+		startingPoints.get(9).x = 1250;
+		startingPoints.get(9).y = 58;
+		
+		startingPoints.add(new Vector2());
+		startingPoints.get(10).x = 1410;
+		startingPoints.get(10).y = 17;
+		
+		startingPoints.add(new Vector2());
+		startingPoints.get(11).x = 1640;
+		startingPoints.get(11).y = 20;
 		
 		
 		chainsList.add(new StaticBody());
@@ -425,7 +510,7 @@ public class GameScreen extends AbstractScreen{
 		platforms.get(23).createPlatform(1420, 16.0f, 2, 4.5f);
 		
 		
-		for(int i = 0; i < 150; ++i)
+		for(int i = 0; i < 200; ++i)
 			coinsList.add(new StaticBody());
 		coinsList.get(0).createCoin(50, 5, 6,0);
 		coinsList.get(1).createCoin(130, 8,6,1);
@@ -488,10 +573,10 @@ public class GameScreen extends AbstractScreen{
 		coinsList.get(52).createCoin(860, 108, 6,52);
 		
 		
-		coinsList.get(53).createCoin(900, 55, 6,53);
-		coinsList.get(54).createCoin(905, 55, 6,54);
-		coinsList.get(55).createCoin(910, 55, 6,55);
-		coinsList.get(56).createCoin(915, 55, 6,56);
+		coinsList.get(53).createCoin(890, 55, 6,53);
+		coinsList.get(54).createCoin(895, 55, 6,54);
+		coinsList.get(55).createCoin(900, 55, 6,55);
+		coinsList.get(56).createCoin(905, 55, 6,56);
 		
 		coinsList.get(57).createCoin(960, 55, 6,57);
 		coinsList.get(58).createCoin(965, 55, 6,58);
@@ -504,10 +589,10 @@ public class GameScreen extends AbstractScreen{
 		
 		coinsList.get(70).createCoin(-40, 3, 6,70);
 		coinsList.get(71).createCoin(-50, 4, 6,71);
-		coinsList.get(72).createCoin(-60, 5, 6,72);
-		coinsList.get(73).createCoin(-70, 7, 6,73);
-		coinsList.get(74).createCoin(-80, 3, 6,74);
-		coinsList.get(75).createCoin(-90, 4, 6,75);
+		coinsList.get(72).createCoin(-60, 8, 6,72);
+		coinsList.get(73).createCoin(-70, 9, 6,73);
+		coinsList.get(74).createCoin(-80, 1, 6,74);
+		coinsList.get(75).createCoin(-90, 9, 6,75);
 		coinsList.get(76).createCoin(-100, 5, 6,76);
 		coinsList.get(77).createCoin(-110, 7, 6,77);
 		
@@ -541,22 +626,61 @@ public class GameScreen extends AbstractScreen{
 		for(int i = 0; i < 3; ++ i){
 			for(int j = 0; j < 8; ++j){
 				int index = 100 +(i*8) + j;
-				coinsList.get(index).createCoin(1168+(i*60)+j*5, 15+j*10, 6,index);
-				HM.l("index: " + index);
+				coinsList.get(index).createCoin(1170+(i*60)+j*5.2f, 16+j*10, 6,index);
 			}
 		}
 		coinsList.get(124).createCoin(1500, 30, 6,124);
 		coinsList.get(125).createCoin(1510, 30, 6,125);
-		coinsList.get(126).createCoin(1500+50, 30, 6,126);
-		coinsList.get(127).createCoin(1510+50, 30, 6,127);
-		coinsList.get(128).createCoin(1500+100, 30, 6,128);
-		coinsList.get(129).createCoin(1510+100, 30, 6,129);
+		coinsList.get(126).createCoin(1550, 30, 6,126);
+		coinsList.get(127).createCoin(1560, 30, 6,127);
+		coinsList.get(128).createCoin(1600, 30, 6,128);
+		coinsList.get(129).createCoin(1610, 30, 6,129);
 		coinsList.get(130).createCoin(1513, 20, 6,130);
 		coinsList.get(131).createCoin(1547, 20, 6,131);
-		coinsList.get(132).createCoin(1513+50, 20, 6,132);
-		coinsList.get(133).createCoin(1547+50, 20, 6,133);
-		coinsList.get(134).createCoin(1513+100, 20, 6,134);
-		coinsList.get(135).createCoin(1547+100, 20, 6,135);
+		coinsList.get(132).createCoin(1563, 20, 6,132);
+		coinsList.get(133).createCoin(1597, 20, 6,133);
+		coinsList.get(134).createCoin(1613, 20, 6,134);
+		coinsList.get(135).createCoin(1647, 20, 6,135);
+		coinsList.get(136).createCoin(-80, 14, 6,136);
+		coinsList.get(137).createCoin(-40, 20, 6,137);
+		
+
+		coinsList.get(138).createCoin(-155, 35, 6,138);
+		coinsList.get(139).createCoin(-165, 45, 6,139);
+		coinsList.get(140).createCoin(-175, 48, 6,140);
+		coinsList.get(141).createCoin(-185, 48, 6,141);
+		
+		coinsList.get(142).createCoin(-280, 43, 6,142);
+		coinsList.get(143).createCoin(-320, 43, 6,143);
+		
+		coinsList.get(144).createCoin(-555, 56, 6,144);
+		coinsList.get(145).createCoin(-565, 56, 6,145);
+		coinsList.get(146).createCoin(-575, 56, 6,146);
+		coinsList.get(147).createCoin(-585, 56, 6,147);
+		
+		coinsList.get(148).createCoin(-550, 69, 6,148);
+		coinsList.get(149).createCoin(-560, 69, 6,149);
+		coinsList.get(150).createCoin(-570, 69, 6,150);
+		coinsList.get(151).createCoin(-580, 69, 6,151);
+		
+		
+		coinsList.get(152).createCoin(1500-2275, 60, 6,152);
+		coinsList.get(153).createCoin(1510-2275, 60, 6,153);
+		coinsList.get(154).createCoin(1550-2275, 60, 6,154);
+		coinsList.get(155).createCoin(1560-2275, 60, 6,155);
+		coinsList.get(156).createCoin(1600-2275, 60, 6,156);
+		coinsList.get(157).createCoin(1610-2275, 60, 6,157);
+		coinsList.get(158).createCoin(1513-2275, 50, 6,158);
+		coinsList.get(159).createCoin(1547-2275, 50, 6,159);
+		coinsList.get(160).createCoin(1563-2275, 50, 6,160);
+		coinsList.get(161).createCoin(1597-2275, 50, 6,161);
+		coinsList.get(162).createCoin(1613-2275, 50, 6,162);
+		coinsList.get(163).createCoin(1647-2275, 50, 6,163);
+		
+		coinsList.get(164).createCoin(85, 18, 6,164);
+		coinsList.get(165).createCoin(105, 18, 6,165);
+		coinsList.get(166).createCoin(135, 20, 6,166);
+		
 	/*	vertices5[3] = new Vector2(-150, 20);
 		vertices5[4] = new Vector2(-160, 20);
 		vertices5[5] = new Vector2(-160, 25);
@@ -590,8 +714,8 @@ public class GameScreen extends AbstractScreen{
 		camera.position.x = body.getPosition().x;
 		camera.position.y = body.getPosition().y;
 		
-		HM.l("X: " + body.getPosition().x);
-		HM.l("Y: " + body.getPosition().y);
+	//	HM.l("X: " + body.getPosition().x);
+//		HM.l("Y: " + body.getPosition().y);
 		
 		if(body.getPosition().y < -50){
 			setEndGame(1);
@@ -622,7 +746,7 @@ public class GameScreen extends AbstractScreen{
 	    batch.setProjectionMatrix(cameraForGUI.combined);
 		batch.begin();
 		font.setColor(0.08f, 0.34f, 0.031f, 1.0f);
-		font.draw(batch, "[/time]$   " + (60-frameIndex), -600, 400); 
+		font.draw(batch, "[/time]$   " + (TTL-frameIndex), -600, 400); 
 		font.draw(batch, "[/points]$ " + (coins), -600, 430); 
 		
 		batch.end();
@@ -677,7 +801,6 @@ public class GameScreen extends AbstractScreen{
 		}, delayMovement,delayMovement,count);
 		
 		
-		final float levelTimerSeconds = 60;
 		final float step = 1;
 		
 		//Odliczanie czasu do koñca levela
@@ -685,7 +808,7 @@ public class GameScreen extends AbstractScreen{
 			@Override
 			public void run() {
 				frameIndex++;
-				if(frameIndex >= levelTimerSeconds){
+				if(frameIndex >= TTL){
 					setEndGame(2);
 					if(coins > maxScore)
 						maxScore = coins;

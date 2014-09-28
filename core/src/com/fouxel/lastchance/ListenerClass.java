@@ -27,16 +27,16 @@ public class ListenerClass implements ContactListener {
 		@Override
 		public void endContact(Contact contact) {
 			if(contact.getFixtureA().getUserData() == "Player"){
-				String userData = (String)contact.getFixtureB().getUserData();
+/*				String userData = (String)contact.getFixtureB().getUserData();
 				
 				if(userData == "Platform"){
-				}
+				}*/
 				canJump = false;
 			}
 			if(contact.getFixtureB().getUserData() == "Player"){
-				String userData = (String)contact.getFixtureA().getUserData();
+/*				String userData = (String)contact.getFixtureA().getUserData();
 				if(userData == "Platform"){
-				}
+				}*/
 				canJump = false;
 			}
 		}
